@@ -1,0 +1,29 @@
+﻿<WindowsHost>
+  <WindowsHost.MainMenu>
+    <Menu HorizontalAlignment="Left">
+      <Menu.Items>
+        <MenuItem Title="_File" Type="Submenu" Gesture="Alt+F">
+          <MenuItem Title="List _Recruiters" TitleRight="F3" Name="lstRecruiters"/>
+          <Separator/>
+          <MenuItem Title="List _Companies" Name="lstCompanies"/>
+          <Separator/>
+          <MenuItem Title="_Change database..."/>
+          <MenuItem Title="E_xit" TitleRight="Alt+X" Name="mnuExit"/>
+        </MenuItem>
+        <MenuItem Title="_Leads" Type="Submenu">
+          <MenuItem Title="New _lead" TitleRight="F4" Name="newLeads"/>
+          <MenuItem Title="_View leads" Name="lstLeads"/>
+          <Separator/>
+          <MenuItem Title="New _interaction" TitleRight="F5"/>
+        </MenuItem>
+        <MenuItem Title="_Search" Type="Submenu">
+          <MenuItem Title="Search _companies / recruiters" Name="searchRecruiters"/>
+          <MenuItem Title="Search _leads"/>
+        </MenuItem>
+        <MenuItem Title="_Help" Type="Submenu">
+          <MenuItem Title="_About RecruiterCRM" Name="mnuAbout"/>
+        </MenuItem>
+      </Menu.Items>
+    </Menu>
+  </WindowsHost.MainMenu>
+</WindowsHost>

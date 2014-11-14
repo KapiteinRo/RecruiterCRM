@@ -1,0 +1,20 @@
+﻿<Window Title="Search Companies / Recruiters">
+  <Panel Name="pnlSearch">
+    <TextBlock Text="Search:"/>
+    <TextBox Name="txtSearch" Width="50" Text=""></TextBox>
+
+    <GroupBox Title="Results" Width="50">
+      <Panel Orientation="Vertical" MaxHeight="15">
+        <ScrollViewer VerticalAlignment="Stretch">
+          <ListBox Width="47" Name="lstResults" VerticalAlignment="Stretch">
+            <ListBox.Items>
+            </ListBox.Items>
+          </ListBox>
+        </ScrollViewer>
+      </Panel>
+    </GroupBox>
+
+    <Button Name="btnGoto" Margin="0" Caption="Go to recruiter" HorizontalAlignment="Center"></Button>
+    <Button Name="btnClose" Margin="0" Caption="Close" HorizontalAlignment="Center"></Button>
+  </Panel>
+</Window>

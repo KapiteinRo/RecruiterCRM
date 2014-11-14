@@ -1,0 +1,10 @@
+INSERT INTO companies  (id,name,website,notes) VALUES(1,'Wolfie Wallstreet HR','example.com','Lovely outings.');
+INSERT INTO companies  (id,name,website,notes) VALUES(2,'LitWare Recruiting','litware.com','Funky!');
+INSERT INTO companies  (id,name,website,notes) VALUES(3,'Contoso Recruitment','contoso.com','They have slides');
+INSERT INTO companies  (id,name,website,notes) VALUES(4,'Lucerne Publishing','lucernepublishing.com',NULL);
+INSERT INTO recruiters  (id,name,email,telephone,company_id,first_contact,notes) VALUES(1,'Pradeep Vidhur','pradeep@contoso.com',NULL,3,'2014-11-07 00:00:00','Nice guy!');
+INSERT INTO recruiters  (id,name,email,telephone,company_id,first_contact,notes) VALUES(3,'Leonardo Nooscario','leonardo@example.com',NULL,1,'2014-11-08 00:00:00','Charismatic chap.');
+INSERT INTO recruiters  (id,name,email,telephone,company_id,first_contact,notes) VALUES(6,'Jenny Ozman','jennie@example.com',NULL,1,'2014-11-05 00:00:00','Quite persistent.');
+INSERT INTO recruiters  (id,name,email,telephone,company_id,first_contact,notes) VALUES(7,'Jan van Berg','jan@litware.com',NULL,2,'2014-11-08 00:00:00','Called me out of bed.');
+INSERT INTO recruiters  (id,name,email,telephone,company_id,first_contact,notes) VALUES(8,'Eddy Rozenberg','eddy@lucernepublishing.com',NULL,4,'2014-11-10 00:00:00','2014-11-10');
+INSERT INTO recruiters  (id,name,email,telephone,company_id,first_contact,notes) VALUES(9,'Bill Mason','bill@contoso.com',NULL,3,'2014-11-12 00:00:00','The COO apparently.');

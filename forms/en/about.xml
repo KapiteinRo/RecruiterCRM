@@ -1,0 +1,16 @@
+﻿<Window Title="About">
+  <Panel Name="pnlAbout">
+    <GroupBox Title="About RecruiterCRM" Width="80" Height="15">
+      <Panel Orientation="Vertical">
+        <TextBlock Text="Copyright (c) 2014" HorizontalAlignment="Center"/>
+        <TextBlock Text="Royi Eltink (KapiteinRo @ GitHub)" HorizontalAlignment="Right"/>
+        <TextBlock Text="Written because I was bored, and wanted to" Margin="1"/>
+        <TextBlock Text="organize all the recruiters calling me."/>
+        <TextBlock Text="ConsoleFramework" Margin="1"/>
+        <TextBlock Text="Copyright (c) 2011 - 2014" HorizontalAlignment="Center"/>
+        <TextBlock Text="I. Kostromin (elw00d @ GitHub)" HorizontalAlignment="Right"/>
+      </Panel>
+    </GroupBox>
+    <Button Name="btnOK" Margin="0" Caption="Awesome" HorizontalAlignment="Center"></Button>
+  </Panel>
+</Window>

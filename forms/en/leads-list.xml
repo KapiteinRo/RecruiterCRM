@@ -1,0 +1,47 @@
+﻿<Window Title="Leads">
+  <Panel>
+    <Grid>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition/>
+        <ColumnDefinition Width="*"/>
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition/>
+      </Grid.RowDefinitions>
+
+      <GroupBox Title="Leads:" Width="45">
+        <Panel Orientation="Vertical" MaxHeight="10">
+          <ScrollViewer VerticalAlignment="Stretch">
+            <ListBox Width="40" Name="lstLeads" VerticalAlignment="Stretch">
+              <ListBox.Items>
+              </ListBox.Items>
+            </ListBox>
+          </ScrollViewer>
+        </Panel>
+      </GroupBox>
+      <GroupBox Title="Company" Name="grpCompany" Width="40">
+        <Panel Orientation="Vertical" Name="pnlCompany">
+          <TextBlock Text="Name:" />
+          <TextBox Name="txtName" Width="35" Text=""></TextBox>
+          <TextBlock Text="Website:" />
+          <TextBox Name="txtWebsite" Width="25" Text=""></TextBox>
+          <TextBlock Text="Notes:" />
+          <TextBox Name="txtNotes" Height="2" Width="40" Text=""></TextBox>
+          <GroupBox Title="Interactions:" Width="40">
+            <Panel Orientation="Vertical">
+              <ScrollViewer VerticalAlignment="Stretch">
+                <ListBox Width="35" Name="lstInteractions" MaxHeight="5" HorizontalAlignment="Stretch">
+                  <ListBox.Items>
+                  </ListBox.Items>
+                </ListBox>
+              </ScrollViewer>
+            </Panel>
+          </GroupBox>
+        </Panel>
+      </GroupBox>
+    </Grid>
+    <Button Name="btnSave" Margin="0" Caption="Save" HorizontalAlignment="Center"></Button>
+    <Button Name="btnCreate" Margin="0" Caption="Create" HorizontalAlignment="Center"></Button>
+  </Panel>
+</Window>
+
