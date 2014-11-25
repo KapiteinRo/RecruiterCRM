@@ -1,6 +1,6 @@
 ﻿<WindowsHost>
   <WindowsHost.MainMenu>
-    <Menu HorizontalAlignment="Left">
+    <Menu HorizontalAlignment="Stretch">
       <Menu.Items>
         <MenuItem Title="_File" Type="Submenu" Gesture="Alt+F">
           <MenuItem Title="List _Recruiters" TitleRight="F3" Name="lstRecruiters"/>

@@ -35,7 +35,11 @@ namespace RecruiterCRM.classes.Models
         /// <summary>
         /// Recruiters belonging to this company
         /// </summary>
-        public Recruiters Recruiters { get { return _recrs ?? (_recrs = new Recruiters(ID, this.DataConnector)); } }
+        public Recruiters Recruiters
+        {
+            get { return _recrs ?? (_recrs = new Recruiters(ID, DataConnector)); }
+            set { _recrs = value; }
+        }
 
         /// <summary>
         /// ctor
@@ -48,13 +52,29 @@ namespace RecruiterCRM.classes.Models
         /// Fetch a single company
         /// </summary>
         /// <param name="iID"></param>
-        public Company(int iID, DataConnector dc) : base(dc.SelectDataTable("SELECT * FROM companies WHERE id = " + iID, true).Rows[0], dc) { }
+        public Company(int iID, DataConnector dc) : base(null, dc) {
+            DataRow dr = null;
+            // use cache
+            string[] saCacheParams = new[] { "Company", iID.ToString() };
+            if (!Cache.Contains(saCacheParams))
+            {
+                DataTable dt = DataConnector.SelectDataTable("SELECT * FROM companies WHERE id = " + iID, true);
+                if (Parser.IsDataTableNotEmpty(dt))
+                {
+                    dr = dt.Rows[0];
+                    Cache.SetCache(saCacheParams, dr);
+                }
+            }
+            else
+                dr = Cache.GetCache(saCacheParams) as DataRow;
+            _FillObject(dr);
+        }
         /// <summary>
         /// Update company
         /// </summary>
         public void Update()
         {
-            this.DataConnector.NonQuery(string.Format(@"
+            DataConnector.NonQuery(string.Format(@"
 UPDATE companies SET
 name = '{0}',
 website = '{1}',
@@ -62,7 +82,7 @@ notes = '{2}'
 WHERE id = {3}
 ", Name, Website, Notes, ID));
             _recrs = null;
-            this.DataConnector.Dispose();
+            DataConnector.Dispose();
         }
 
         /// <summary>
@@ -84,9 +104,22 @@ WHERE id = {3}
         /// ctor, loads all the companies
         /// </summary>
         /// <param name="dc"></param>
-        public Companies(DataConnector dc) : base(dc)
+        public Companies(DataConnector dc)
+            : base(dc)
         {
-            this.AddRange(Fill<Company>("SELECT * FROM companies ORDER BY name;"));
+            AddRange(Fill<Company>("SELECT * FROM companies ORDER BY name;"));
+        }
+
+        /// <summary>
+        /// ctor, loads all the companies and fills recruiters too
+        /// </summary>
+        /// <param name="dc"></param>
+        /// <param name="recrs"></param>
+        public Companies(DataConnector dc, Recruiters recrs)
+            : base(dc)
+        {
+            AddRange(Fill<Company>("SELECT * FROM companies ORDER BY name;"));
+            this.ForEach(c => c.Recruiters = new Recruiters(recrs.FindAll(r => r.CompanyID == c.ID), dc));
         }
 
         /// <summary>
@@ -100,6 +133,7 @@ WHERE id = {3}
             DataConnector.NonQuery(string.Format(@"
 INSERT INTO companies (name, website, notes)
 VALUES ('{0}', '{1}', '{2}');", sName, sWebsite, sNotes));
+            DataConnector.Dispose();
         }
 
         /// <summary>

@@ -34,8 +34,10 @@ namespace RecruiterCRM
             About frmAbout = new About(crm, lang);
             CompaniesList frmCompanies = new CompaniesList(crm, lang);
             RecruitersList frmRecruiters = new RecruitersList(crm, lang);
+            RecruiterCreate frmRecruiterCreate = new RecruiterCreate(crm, lang);
             RecruitersSearch frmRecruitersSearch = new RecruitersSearch(crm, lang);
             LeadsList frmLeads = new LeadsList(crm, lang);
+            
 
             // list first
             wndMain.Show(frmRecruiters.Show());
@@ -72,7 +74,9 @@ namespace RecruiterCRM
                     frmRecruitersSearch.Close();
                 }
             };
-            
+            frmRecruiters.btnCreate.OnClick += (s, e) => wndMain.Show(frmRecruiterCreate.Show());
+            // on created
+            frmRecruiterCreate.OnRefreshParent += (s, e) => frmRecruiters.InitForm();            
             
 
             // handle menu bindings

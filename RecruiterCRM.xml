@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <RecruiterCRMConfig>
   <DataConfig>
-    <FileName>D:\Projects\recruitercrm\Data\reccrm02.db3</FileName>
+    <FileName>D:\Projects\recruitercrm\Data\testcrm.db3</FileName>
     <PassWord>test</PassWord>
   </DataConfig>
 </RecruiterCRMConfig>

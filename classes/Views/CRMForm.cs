@@ -15,6 +15,17 @@ namespace RecruiterCRM.classes.Views
     public class CRMForm : ICRMForm
     {
         /// <summary>
+        /// delegate to refresh parent event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public delegate void RefreshParentHandler(object sender, RefreshParentEventArgs e);
+        /// <summary>
+        /// Call for a refresh of the parent window.
+        /// </summary>
+        public event RefreshParentHandler OnRefreshParent;
+
+        /// <summary>
         /// Main logic class
         /// </summary>
         public CRM CRM { get; set; }
@@ -82,7 +93,42 @@ namespace RecruiterCRM.classes.Views
         public Window Show()
         {
             InitForm();
+
+            // handle several keys:
+            // F5 = refresh
+            // Escape = close
+            HWND.KeyUp += (s, e) =>
+            {
+                switch (e.wVirtualKeyCode)
+                {
+                    case ConsoleFramework.Native.VirtualKeys.F5: InitForm(); break;
+                    case ConsoleFramework.Native.VirtualKeys.Escape: Close(); break;
+                }
+            };
+
             return HWND;
+        }
+
+        /// <summary>
+        /// Refresh parent window
+        /// </summary>
+        /// <param name="sParent"></param>
+        protected void CallForRefreshParent(string sParent)
+        {
+            if (OnRefreshParent == null) return;
+            OnRefreshParent(this, new RefreshParentEventArgs(sParent));
+        }
+    }
+
+    /// <summary>
+    /// Event args for refreshing a parent
+    /// </summary>
+    public class RefreshParentEventArgs : EventArgs
+    {
+        public string ParentID { get; set; }
+        public RefreshParentEventArgs(string sParent)
+        {
+            ParentID = sParent;
         }
     }
 }

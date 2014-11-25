@@ -62,7 +62,7 @@ namespace RecruiterCRM.classes.Models
         /// </summary>
         public void Update()
         {
-            this.DataConnector.NonQuery(string.Format(@"
+            DataConnector.NonQuery(string.Format(@"
 UPDATE recruiters SET
 name = '{0}',
 email = '{1}',
@@ -73,8 +73,17 @@ notes = '{5}'
 WHERE id = {6}
 ", Name, Email, Telephone, CompanyID, FirstContact.ToString("yyyy-MM-dd"), Notes, ID));
             _comp = null;
-            this.DataConnector.Dispose();
+            DataConnector.Dispose();
         }
+        /// <summary>
+        /// Delete this recruiter
+        /// </summary>
+        public void Delete()
+        {
+            DataConnector.NonQuery("DELETE FROM recruiters WHERE id = " + ID);
+            DataConnector.Dispose();
+        }
+
         /// <summary>
         /// To string
         /// </summary>
@@ -106,6 +115,17 @@ WHERE id = {6}
         {
             this.AddRange(Fill<Recruiter>("SELECT * FROM recruiters WHERE company_id = " + iCompanyId + " ORDER BY name;"));
         }
+
+        /// <summary>
+        /// Loads recruiters by list
+        /// </summary>
+        /// <param name="ieRec"></param>
+        /// <param name="dc"></param>
+        public Recruiters(IEnumerable<Recruiter> ieRec, DataConnector dc)
+            : base(dc)
+        {
+            this.AddRange(ieRec);
+        }
         /// <summary>
         /// To string list
         /// </summary>
@@ -126,10 +146,10 @@ WHERE id = {6}
         /// <param name="sNotes"></param>
         public void Create(string sName, string sEmail, string sTelephone, int iCompanyId, DateTime dtFirstContact, string sNotes)
         {
-            this.DataConnector.NonQuery(string.Format(@"
+            DataConnector.NonQuery(string.Format(@"
 INSERT INTO recruiters (name, email, telephone, company_id, first_contact, notes)
 VALUES ('{0}', '{1}', '{2}', {3}, '{4}', '{5}');", sName, sEmail, sTelephone, iCompanyId, dtFirstContact.ToString("yyyy-MM-dd"), sNotes));
-            this.DataConnector.Dispose();
+            DataConnector.Dispose();
         }
         /// <summary>
         /// Find recruiters

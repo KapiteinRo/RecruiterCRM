@@ -78,6 +78,10 @@
     <Compile Include="forms\LeadsList.Designer.cs">
       <DependentUpon>LeadsList.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\RecruiterCreate.cs" />
+    <Compile Include="forms\RecruiterCreate.Designer.cs">
+      <DependentUpon>RecruiterCreate.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\RecruitersList.cs" />
     <Compile Include="forms\RecruitersList.Designer.cs">
       <DependentUpon>RecruitersList.cs</DependentUpon>
@@ -91,6 +95,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="forms\en\recruiter-create.xml" />
     <Content Include="RecruiterCRM.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

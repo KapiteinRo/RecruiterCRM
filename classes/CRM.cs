@@ -22,13 +22,13 @@ namespace RecruiterCRM.classes
         /// <summary>
         /// All the recruiters
         /// </summary>
-        public Recruiters Recruiters { get { return _recrs ?? (_recrs = new Recruiters(this.DataConnector)); } }
+        public Recruiters Recruiters { get { return _recrs ?? (_recrs = new Recruiters(DataConnector)); } }
 
         private Companies _comps = null;
         /// <summary>
         /// All the companies
         /// </summary>
-        public Companies Companies { get { return _comps ?? (_comps = new Companies(this.DataConnector)); } }
+        public Companies Companies { get { return _comps ?? (_comps = new Companies(DataConnector, Recruiters)); } }
 
         /*
          *  CONFIGURATIONS
@@ -45,7 +45,7 @@ namespace RecruiterCRM.classes
         public CRM()
         {
             // load from conifg
-            this.DataConnector = new DataConnector(DataConfig.ConnectionString);
+            DataConnector = new DataConnector(DataConfig.ConnectionString);
         }
 
         /// <summary>

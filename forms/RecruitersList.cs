@@ -34,8 +34,17 @@ namespace RecruiterCRM.forms
                 SelectRecruiter(CRM.Recruiters[iSel].ID);
             };
             lstRecruiters.SelectedItemIndex = 0;
+            // delete recruiter
+            lstRecruiters.KeyUp += (s, e) =>
+            {
+                if (e.wVirtualKeyCode == ConsoleFramework.Native.VirtualKeys.Delete)
+                {
+                    CRM.Recruiters[lstRecruiters.SelectedItemIndex].Delete();
+                    InitForm();
+                }
+            };
             // save recruiter
-            btnSave.OnClick += (sender, eventArgs) =>
+            btnSave.OnClick += (s, e) =>
             {
                 int iSel = lstRecruiters.SelectedItemIndex;
                 if (!string.IsNullOrEmpty(txtName.Text) && !string.IsNullOrEmpty(txtEmail.Text))
@@ -47,20 +56,7 @@ namespace RecruiterCRM.forms
                     CRM.Recruiters[iSel].Notes = txtNotes.Text;
                     CRM.Recruiters[iSel].CompanyID = CRM.Companies[cmbCompanies.SelectedItemIndex].ID;
                     CRM.Recruiters[iSel].Update();
-                    this.InitForm();
-                }
-            };
-            // create recruiter
-            btnCreate.OnClick += (sender, eventArgs) =>
-            {
-                if (!string.IsNullOrEmpty(txtName.Text) && !string.IsNullOrEmpty(txtEmail.Text))
-                {
-                    CRM.Recruiters.Create(txtName.Text,
-                        txtEmail.Text,
-                        txtTelephone.Text,
-                        CRM.Companies[cmbCompanies.SelectedItemIndex].ID,
-                        DateHelper.FromDutchDateString(txtFirstContact.Text),
-                        txtNotes.Text);
+                    InitForm();
                 }
             };
         }

@@ -1,0 +1,19 @@
+﻿<Window Title="Add recruiter">
+  <Panel>
+    <Panel Orientation="Vertical" Name="pnlRecruiter">
+      <TextBlock Text="Name:" />
+      <TextBox Name="txtName" Width="30" Text=""></TextBox>
+      <TextBlock Text="E-mail:" />
+      <TextBox Name="txtEmail" Width="30" Text=""></TextBox>
+      <TextBlock Text="Telephone:" />
+      <TextBox Name="txtTelephone" Width="20" Text=""></TextBox>
+      <TextBlock Text="Company:" />
+      <ComboBox Width="30" Name="cmbCompanies" MaxWidth="30"></ComboBox>
+      <TextBlock Text="First contact:" />
+      <TextBox Name="txtFirstContact" Width="20" Text=""></TextBox>
+      <TextBlock Text="Notes:" />
+      <TextBox Name="txtNotes" Height="2" Width="30" Text=""></TextBox>
+    </Panel>
+    <Button Name="btnSave" Margin="0" Caption="Save" HorizontalAlignment="Center"></Button>
+  </Panel>
+</Window>
